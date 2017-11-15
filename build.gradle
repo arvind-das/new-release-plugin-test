@@ -1,0 +1,44 @@
+group 'com.oodles'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'release'
+sourceCompatibility = 1.8
+
+
+buildscript {
+   ext {
+       projectVersion = "0.0.1"
+   }
+    repositories {
+        mavenCentral()
+        maven {
+            url 'http://maven.tmatesoft.com/content/repositories/releases/'
+        }
+    }
+
+    dependencies {
+        classpath 'au.com.ish.gradle:release:2.2.2'
+    }
+}
+
+
+release {
+    failOnSnapshotDependencies = true
+    allowLocalModifications = false
+    releaseDryRun = false
+    scm = 'git'
+}
+
+version = "$ext.projectVersion"
+
+
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
